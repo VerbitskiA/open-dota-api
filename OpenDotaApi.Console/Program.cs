@@ -28,17 +28,29 @@ namespace OpenDotaApi.Console
                 {
                     case "1":
                         System.Console.WriteLine("===========================");
-                        System.Console.WriteLine("Текущее значение количества выводимых данных: " + N );
+                        System.Console.WriteLine("Текущее значение количества выводимых данных: " + N);
                         System.Console.WriteLine("===========================");
                         break;
                     case "2":
                         int i = 1;
                         System.Console.WriteLine("===========================");
-                        System.Console.WriteLine("TAG\t Rating \t Wins \t Losses \t Last Match Time");
+                        System.Console.WriteLine(String.Format("{0, 11}\t{1,8}\t{2,8}\t{3,8}\t{4,15}",
+                                        "TAG",
+                                        "Rating",
+                                        "Wins",
+                                        "Losses",
+                                        "Last Match Time"));
+                        System.Console.WriteLine("------------------------------------------------------------------------------");
                         foreach (var item in res)
                         {
+                            string s = String.Format("{0, 11}\t{1,8}\t{2,8}\t{3,8}\t{4,15}",
+                                        item.Tag,
+                                        item.Rating,
+                                        item.Wins,
+                                        item.Losses,
+                                        item.Last_Match_Time);
 
-                            System.Console.WriteLine($"{item.Tag}\t {item.Rating} \t {item.Wins} \t {item.Losses} \t {item.Last_Match_Time}");
+                            System.Console.WriteLine(s);
                             i++;
                             if (i > N)
                             {

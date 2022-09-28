@@ -19,8 +19,4 @@
         public string LogoUrl { get; set; }
         
     }
-    
-        
-
-    
 }
