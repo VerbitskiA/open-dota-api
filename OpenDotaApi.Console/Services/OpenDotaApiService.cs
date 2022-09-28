@@ -1,4 +1,5 @@
-﻿using OpenDotaApi.Console.Models;
+﻿using Newtonsoft.Json;
+using OpenDotaApi.Console.Models;
 using RestSharp;
 
 namespace OpenDotaApi.Console.Services
@@ -7,23 +8,19 @@ namespace OpenDotaApi.Console.Services
     {
         public readonly string ROOT_URL = "https://api.opendota.com/api/";
 
-        public Team[] GetTop10Teams()
+        public Team[] GetTopNTeams(int N)
         {
-            //TODO:
-            //1. Корректно преобразовать json в наш тип Team
-            //2. Выбрать первых 10.
-
             var client = new RestClient(ROOT_URL);
 
             var request = new RestRequest("teams", Method.Get);
             
+            var queryResult = client.Execute(request);
 
-            var queryResult = client.Execute<Team[]>(request).Data;
-            
+            Team[] result = JsonConvert.DeserializeObject<Team[]>(queryResult.Content);
 
-            var res = client.Get<Team[]>(request);
-          
-            return queryResult;
+            result = result.Take(N).ToArray();
+
+            return result;
         }
     }
 }
