@@ -12,8 +12,15 @@
 
         public int Losses { get; set; }
 
+        public int Last_Match_Time { get; set; }
+        
         public double Rating { get; set; }
 
         public string LogoUrl { get; set; }
+        
     }
+    
+        
+
+    
 }

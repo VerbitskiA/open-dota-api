@@ -16,11 +16,13 @@ namespace OpenDotaApi.Console.Services
             var client = new RestClient(ROOT_URL);
 
             var request = new RestRequest("teams", Method.Get);
+            
 
             var queryResult = client.Execute<Team[]>(request).Data;
+            
 
             var res = client.Get<Team[]>(request);
-
+          
             return queryResult;
         }
     }
