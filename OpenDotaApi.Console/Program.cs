@@ -9,18 +9,16 @@ namespace OpenDotaApi.Console
         {
             OpenDotaApiService dotaApiService = new OpenDotaApiService();
             
-            //Team[]? res = dotaApiService.GetTop10Teams();
-
-            string? str;
+            string? menu;
             do
             {
                 System.Console.WriteLine("1.Узнать текущее кол-во: ");
                 System.Console.WriteLine("2.Вывод статистики");
                 System.Console.WriteLine("3.Выход");
                 System.Console.Write("Выберите пункт меню: ");
-                str = System.Console.ReadLine();
+                menu = System.Console.ReadLine();
                 
-                switch (str)
+                switch (menu)
                 {
                     case "1":
                         System.Console.WriteLine("===========================");
@@ -32,8 +30,15 @@ namespace OpenDotaApi.Console
 
                         int n = int.Parse(System.Console.ReadLine());
 
+                        System.Console.WriteLine("По какому ключу сортировать?");
+
+                        string key = System.Console.ReadLine();
+
+                        //TODO: по возрастанию или по убыванию
+
                         Team[]? res = dotaApiService.GetTopNTeams(n);
 
+                        res = dotaApiService.SortArray(res, key, false);
 
                         System.Console.WriteLine("===========================");
                         System.Console.WriteLine(String.Format("{0,24}{1, 11}\t{2,8}\t{3,8}\t{4,8}\t{5,15}",
@@ -62,8 +67,7 @@ namespace OpenDotaApi.Console
                         break;
                 }
             }
-            while (str != "3");
-
+            while (menu != "3");
         }
     }
 }

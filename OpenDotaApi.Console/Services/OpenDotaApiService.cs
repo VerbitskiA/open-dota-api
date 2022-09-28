@@ -22,5 +22,46 @@ namespace OpenDotaApi.Console.Services
 
             return result;
         }
+
+        public Team[] SortArray(Team[] teams, string key, bool asc)
+        {
+            switch (key)
+            {
+                case "Wins":
+                    if (asc)
+                    {
+                        teams = teams.OrderBy(k => k.Wins).ToArray();
+                    }
+                    else
+                    {
+                        teams = teams.OrderByDescending(k => k.Wins).ToArray();
+                    }
+                    break;
+                case "Rating":
+                    if (asc)
+                    {
+                        teams = teams.OrderBy(k => k.Rating).ToArray();
+                    }
+                    else
+                    {
+                        teams = teams.OrderByDescending(k => k.Rating).ToArray();
+                    }
+                    break;
+                case "Losses":
+                    if (asc)
+                    {
+                        teams = teams.OrderBy(k => k.Losses).ToArray();
+                    }
+                    else
+                    {
+                        teams = teams.OrderByDescending(k => k.Losses).ToArray();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return teams;
+        }
     }
 }
