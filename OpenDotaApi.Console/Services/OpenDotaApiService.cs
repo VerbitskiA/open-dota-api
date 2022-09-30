@@ -16,7 +16,7 @@ namespace OpenDotaApi.Console.Services
             
             var queryResult = client.Execute(request);
 
-            Team[] result = JsonConvert.DeserializeObject<Team[]>(queryResult.Content);
+            Team[]? result = JsonConvert.DeserializeObject<Team[]>(queryResult.Content);
 
             result = result.Take(N).ToArray();
 
@@ -62,6 +62,20 @@ namespace OpenDotaApi.Console.Services
             }
 
             return teams;
+        }
+        public HeroInfo[] GetTop10Heroes(int H)
+        {
+            var client = new RestClient(ROOT_URL);
+
+            var request = new RestRequest("heroStats", Method.Get);
+
+            var queryResult = client.Execute(request);
+
+            HeroInfo[]? result = JsonConvert.DeserializeObject<HeroInfo[]>(queryResult.Content);
+            
+            result = result.Take(H).ToArray();
+
+            return result;
         }
     }
 }
