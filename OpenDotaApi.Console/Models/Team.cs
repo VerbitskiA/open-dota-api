@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using OpenDotaApi.Console.Abstractions;
 
 namespace OpenDotaApi.Console.Models
 {
-    public class Team
+    public class Team : ITeam
     {
         [JsonProperty("team_id")]
-        public int Id { get; set; }
+        public int TeamId { get; set; }
 
         [JsonProperty("name")]
         public string FullName { get; set; }
